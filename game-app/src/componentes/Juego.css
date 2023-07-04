@@ -1,0 +1,55 @@
+.container {
+    width: 100%;
+    display: flex;
+    flex-direction: column;
+    justify-content: center;
+    align-items: center;
+    height: 100vh;
+    background-color:rgb(2,0,36);;
+}
+
+.container-title {
+    display: flex;
+    flex-direction: column;
+    text-align: center;
+}
+
+.title-juego {
+    align-self: center;
+    color: #ebebeb;
+    font-size: 50px;
+    font-weight: bold;
+}
+
+.container-opciones {
+    width: 100%;
+    height: auto;
+    display: flex;
+    justify-content: center;
+}
+
+.box-btn-opciones {
+    display: flex;
+    justify-content: space-evenly;
+    width: 70%;
+}
+
+.btn-opcion {
+    background-color: #ffffff;
+    color: #1d1c1c;
+    border: 2px solid #333333;
+    padding: 10px 20px;
+    font-size: 16px;
+    font-weight: bold;
+    margin: 10px;
+    cursor: pointer;
+    width: 150px;
+    border-radius: 10px;
+  }
+  
+  .btn-opcion:hover {
+    background-color: #333333;
+    color: #ffffff;
+  }
+  
+  
