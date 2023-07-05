@@ -1,4 +1,4 @@
-import React from "react";
+import React, { useState } from "react";
 import "./Juego.css";
 import papel from "../images/papel.png";
 import lagarto from "../images/lagarto.png";
@@ -16,6 +16,29 @@ const Juego = () => {
         {id: 4, nombre: 'Spock', logo: Spock},
     ];
 
+    const [eleccionUser, setEleccionUser] = useState(null);
+    const [eleccionPC, setEleccionPC] = useState(null);
+    const [resultado, setResultado] = useState(null);
+    const [disabled, setDisabled] = useState(false);
+
+
+    const handleEleccion = (e) => {
+        setEleccionUser(e);
+        setDisabled(true); 
+
+        eleccionRandom();
+    }
+
+    const eleccionRandom = () => {
+        const random = Math.floor(Math.random() * 5);
+
+        setTimeout(() => {
+            console.log(random);
+        }, 3000);
+
+        clearTimeout();
+    }
+
     return (
         <div className="container">
 
@@ -27,7 +50,7 @@ const Juego = () => {
                 <div className="box-btn-opciones">
                     {opciones.map((opcion) => {
                         return (
-                            <button key={opcion.id} className="btn-opcion" > 
+                            <button key={opcion.id} className={`btn-opcion ${disabled ? "disabled" : ""}`} onClick={() => handleEleccion(opcion.id)} disabled={disabled}> 
                                 <img className="img-opcion" src={opcion.logo} alt={opcion.nombre}></img>
                                 {opcion.nombre}
                             </button>
