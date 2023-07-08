@@ -20,11 +20,19 @@ const Juego = () => {
     const [eleccionPC, setEleccionPC] = useState(null);
     const [resultado, setResultado] = useState(null);
     const [disabled, setDisabled] = useState(false);
+    const [disabledOpcionesElegidas,setDisabledOpcionesElegidas] = useState(true);
+    const [chosen, setChosen] = useState(false);
 
 
     const handleEleccion = (e) => {
-        setEleccionUser(e);
-        setDisabled(true); 
+        setEleccionUser(opciones ? opciones.find((opcion) => opcion.id === e) : <>No existe la opcion elegida</>);
+        setDisabled(true);
+
+        setTimeout(() => {
+            setChosen(true);
+        }, 500)
+        
+        setDisabledOpcionesElegidas(false);
 
         eleccionRandom();
     }
@@ -33,7 +41,7 @@ const Juego = () => {
         const random = Math.floor(Math.random() * 5);
 
         setTimeout(() => {
-            console.log(random);
+            setEleccionPC(opciones ? opciones.find((opcion) => opcion.id === random) : <>No existe la opcion elegida</>)
         }, 3000);
 
         clearTimeout();
@@ -41,24 +49,49 @@ const Juego = () => {
 
     return (
         <div className="container">
+            {!chosen ? 
+                (<div>
+                        <div className={`container-title ${disabled ? "disabled" : ""}`} disabled={disabled}>
+                            <h1 className="title-juego">¡Que comience el juego!</h1>
+                        </div>
 
-            <div className="container-title">
-                <h1 className="title-juego">¡Que comience el juego!</h1>
-            </div>
+                        <div  className="container-opciones">
+                            <div className="box-btn-opciones">
+                                {opciones && opciones.map((opcion) => {
+                                    return (
+                                        <button key={opcion.id} className={`btn-opcion ${disabled ? "disabled" : ""}`} onClick={() => handleEleccion(opcion.id)} disabled={disabled}> 
+                                            <img className="img-opcion" src={opcion.logo} alt={opcion.nombre}></img>
+                                            {opcion.nombre}
+                                        </button>
+                                    )
+                                })}
+                            </div>
+                        </div>
+                </div>)
+            :
+                (<div className={`box-opciones-elegidas ${disabledOpcionesElegidas ? "disabled" : ""}`} disabled={disabledOpcionesElegidas}>
+                        <div className="box-opcion-elegida-user">
+                            {eleccionUser && (
+                                <button key={eleccionUser.id} className="btn-opcion"> 
+                                    <img className="img-opcion" src={eleccionUser.logo} alt={eleccionUser.nombre}></img>
+                                    {eleccionUser.nombre}
+                                </button>
+                            )}
+                        </div>
 
-            <div  className="container-opciones">
-                <div className="box-btn-opciones">
-                    {opciones.map((opcion) => {
-                        return (
-                            <button key={opcion.id} className={`btn-opcion ${disabled ? "disabled" : ""}`} onClick={() => handleEleccion(opcion.id)} disabled={disabled}> 
-                                <img className="img-opcion" src={opcion.logo} alt={opcion.nombre}></img>
-                                {opcion.nombre}
-                            </button>
-                        )
-                    })}
-                </div>
-            </div>
-            
+                        <div className="box-vs">
+                            <p>VS</p>
+                        </div>
+
+                        <div className="box-opcion-elegida-pc">
+                            {eleccionPC && (
+                                <button key={eleccionPC.id} className="btn-opcion"> 
+                                    <img className="img-opcion" src={eleccionPC.logo} alt={eleccionPC.nombre}></img>
+                                    {eleccionPC.nombre}
+                                </button>
+                            )}
+                        </div>
+                </div>)}
         </div>
     )
 }
