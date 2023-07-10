@@ -96,12 +96,10 @@ const Juego = () => {
     }
 
     useEffect(() => {
-        console.log(resultado);
-        // if (resultado === "¡VICTORIA!") {
-        //     setAnimate({ transform: "scale(1.2)" }).start();
-        // }
+        if (resultado === "¡VICTORIA!")
+            setAnimate({ transform: "scale(1.2)" });
 
-    }, [resultado])
+    }, [resultado, setAnimate])
 
     const eleccionRandom = () => {
         const random = Math.floor(Math.random() * 5);
