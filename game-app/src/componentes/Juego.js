@@ -146,37 +146,43 @@ const Juego = () => {
             :
                 (<div className={`animated ${disabledOpcionesElegidas ? "disabled" : ""}`} disabled={disabledOpcionesElegidas}>
 
-                        <div className={`bounceInLeft animated ${resultado ? "fadeOutDown" : "" }`}>
-                            {eleccionUser && (
-                                <button key={eleccionUser.id} className={`btn-opcion ${resultado ? "box-resultado" : ""}`}> 
+                    <div className={`bounceInLeft animated ${resultado ? "fadeOutDown" : "" }`}>
+                        {eleccionUser && (
+                            <div className="box-opcion-elegida">
+                                <h2 className="title-eleccion">Elegiste:</h2>
+                                <button key={eleccionUser.id} className={`btn-opcion ${resultado ? "box-resultado hidden" : ""}`}> 
                                     <img className="img-opcion" src={eleccionUser.logo} alt={eleccionUser.nombre}></img>
                                     {eleccionUser.nombre}
                                 </button>
-                            )}
-                        </div>
+                            </div>
+                        )}
+                    </div>
 
-                        <div className={`${!resultado ? "hidden" : ""}`}> 
-                            <animated.h1 className="title-resultado" style={animate}>
-                            {resultado}
-                            </animated.h1>
-                        </div>
+                    <div className={`${!resultado ? "hidden" : ""}`}> 
+                        <animated.h1 className="title-resultado" style={animate}>
+                        {resultado}
+                        </animated.h1>
+                    </div>
 
-                        <div className={`${!resultado ? "hidden" : "content"}`}>
-                            <button className={`btn-opcion btn-isHover ${!resultado ? "hidden" : "btn-opcion"}`} onClick={() => volverAJugar()} >Volver a jugar</button>
-                        </div>
+                    <div className={`${!resultado ? "hidden" : "content"}`}>
+                        <button className={`btn-opcion btn-isHover ${!resultado ? "hidden" : "btn-opcion"}`} onClick={() => volverAJugar()} >Volver a jugar</button>
+                    </div>
 
-                        <div className={`box-vs animated ${resultado ? "fadeOutDown" : "" }`}>
-                            <h1 className="title-juego">VS</h1>
-                        </div>
+                    <div className={`box-vs animated ${resultado ? "fadeOutDown" : "" }`}>
+                        <h1 className="title-juego">VS</h1>
+                    </div>
 
-                        <div className={`animated bounceInRight ${resultado ? "fadeOutDown" : "" }`}>
-                            {eleccionPC && (
-                                <button key={eleccionPC.id} className="btn-opcion"> 
+                    <div className={`animated bounceInRight ${resultado ? "fadeOutDown" : "" }`}>
+                        {eleccionPC && (
+                            <div className="box-opcion-elegida">
+                                <button key={eleccionPC.id} className={`btn-opcion ${resultado ? "box-resultado hidden" : ""}`}> 
                                     <img className="img-opcion" src={eleccionPC.logo} alt={eleccionPC.nombre}></img>
                                     {eleccionPC.nombre}
                                 </button>
-                            )}
-                        </div>
+                                <h2 className="title-eleccion">Tu oponente eligió:</h2>
+                            </div>
+                        )}
+                    </div>
                 </div>)}
         </div>
     )

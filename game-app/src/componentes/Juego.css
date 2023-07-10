@@ -269,3 +269,14 @@
   display: contents;
   cursor: pointer;
 }
+
+.box-opcion-elegida {
+  display: flex;
+  flex-direction: column;
+  align-items: center;
+}
+
+.title-eleccion {
+  color: #ffffff;
+  margin: 0;
+}
