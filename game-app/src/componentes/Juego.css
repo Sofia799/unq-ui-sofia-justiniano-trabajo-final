@@ -1,11 +1,14 @@
 .container {
     width: 100%;
+    height: auto;
     display: flex;
     flex-direction: column;
     justify-content: center;
     align-items: center;
     height: 100vh;
-    background-color:rgb(2,0,36);;
+    background-color:rgb(2,0,36);
+    box-sizing:border-box;
+    overflow: hidden;
 }
 
 .container-title {
@@ -14,7 +17,7 @@
     text-align: center;
 }
 
-.title-juego {
+.title-juego, .title-resultado {
     align-self: center;
     color: #ebebeb;
     font-size: 50px;
@@ -210,6 +213,8 @@
 }
 
 .animated {
+  display: flex;
+  flex-direction: column;
   -webkit-animation-duration: 2s;
   animation-duration: 2s;
   -webkit-animation-fill-mode: both;
@@ -219,6 +224,7 @@
 .box-vs {
   display: flex;
   justify-content: center;
+  align-items: center;
 }
 
 @-webkit-keyframes fadeOutDown {
@@ -248,4 +254,18 @@
 .fadeOutDown {
   -webkit-animation-name: fadeOutDown;
   animation-name: fadeOutDown;
+}
+
+.box-resultado {
+  cursor: default;
+}
+
+.hidden {
+  display: none;
+  margin: 0;
+}
+
+.content {
+  display: contents;
+  cursor: pointer;
 }

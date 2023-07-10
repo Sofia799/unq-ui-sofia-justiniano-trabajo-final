@@ -14,7 +14,7 @@ const Juego = () => {
             nombre: 'Piedra' , 
             logo: piedra, 
             jugarCon: ((rival) => {
-                return rival.nombre === 'Tijera' || rival.nombre === 'Lagarto' ? "Victoria" : "Derrota";
+                return rival.nombre === 'Tijera' || rival.nombre === 'Lagarto' ? "¡VICTORIA!" : "DERROTA";
             })
         },
         {
@@ -22,7 +22,7 @@ const Juego = () => {
             nombre: 'Papel' , 
             logo: papel,
             jugarCon: ((rival) => {
-                return rival.nombre === 'Piedra' || rival.nombre === 'Spock' ? "Victoria" : "Derrota";
+                return rival.nombre === 'Piedra' || rival.nombre === 'Spock' ? "¡VICTORIA!" : "DERROTA";
             })
         },
         {
@@ -30,7 +30,7 @@ const Juego = () => {
             nombre: 'Tijera' , 
             logo: tijeras,
             jugarCon: ((rival) => {
-                return rival.nombre === 'Papel' || rival.nombre === 'Lagarto' ? "Victoria" : "Derrota";
+                return rival.nombre === 'Papel' || rival.nombre === 'Lagarto' ? "¡VICTORIA!" : "DERROTA";
             })
         },
         {
@@ -38,7 +38,7 @@ const Juego = () => {
             nombre: 'Lagarto', 
             logo: lagarto,
             jugarCon: ((rival) => {
-                return rival.nombre === 'Spock' || rival.nombre === 'Papel' ? "Victoria" : "Derrota";
+                return rival.nombre === 'Spock' || rival.nombre === 'Papel' ? "¡VICTORIA!" : "DERROTA";
             })
         },
         {
@@ -46,7 +46,7 @@ const Juego = () => {
             nombre: 'Spock', 
             logo: Spock,
             jugarCon: ((rival) => {
-                return rival.nombre === 'Tijera' || rival.nombre === 'Piedra' ? "Victoria" : "Derrota";
+                return rival.nombre === 'Tijera' || rival.nombre === 'Piedra' ? "¡VICTORIA!" : "DERROTA";
             })
         },
     ];
@@ -74,12 +74,14 @@ const Juego = () => {
 
         setTimeout(() => {
             resolverJugada(opcionElegidaUsuario, eleccionElegidaPc);
-        }, 5000)
+        }, 5000);
+
+        clearTimeout();
     }
 
     const resolverJugada = (opcionElegidaUsuario, eleccionElegidaPc) => {
         if (opcionElegidaUsuario.nombre === eleccionElegidaPc.nombre) {
-            setResultado("Emplate");
+            setResultado("EMPATE");
         } else {
             setResultado(opcionElegidaUsuario.jugarCon(eleccionElegidaPc));
         }
@@ -94,7 +96,20 @@ const Juego = () => {
         const random = Math.floor(Math.random() * 5);
         let opcionElegida = opciones ? opciones.find((opcion) => opcion.id === random) : <>No existe la opcion elegida</>;
         setEleccionPC(opcionElegida);
+
         return opcionElegida;
+    }
+
+    const volverAJugar = () => {
+        setTimeout(() => {
+            setChosen(false);
+            setEleccionPC(null);
+            setResultado(null);
+            setEleccionUser(null);
+            setDisabled(false);
+            setDisabledOpcionesElegidas(true);
+        }, 500);
+        clearTimeout();
     }
 
     return (
@@ -119,21 +134,30 @@ const Juego = () => {
                         </div>
                 </div>)
             :
-                (<div className={`box-opciones-elegidas animated ${disabledOpcionesElegidas ? "disabled" : ""} ${resultado ? "fadeOutDown" : "" }`} disabled={disabledOpcionesElegidas}>
-                        <div className="bounceInLeft animated box-opcion-elegida-user">
+                (<div className={`animated ${disabledOpcionesElegidas ? "disabled" : ""}`} disabled={disabledOpcionesElegidas}>
+
+                        <div className={`bounceInLeft animated ${resultado ? "fadeOutDown" : "" }`}>
                             {eleccionUser && (
-                                <button key={eleccionUser.id} className="btn-opcion"> 
+                                <button key={eleccionUser.id} className={`btn-opcion ${resultado ? "box-resultado" : ""}`}> 
                                     <img className="img-opcion" src={eleccionUser.logo} alt={eleccionUser.nombre}></img>
                                     {eleccionUser.nombre}
                                 </button>
                             )}
                         </div>
 
-                        <div className="box-vs">
+                        <div className={`${!resultado ? "hidden" : ""}`}> 
+                            <h1 className="title-resultado">{resultado}</h1>
+                        </div>
+
+                        <div className={`${!resultado ? "hidden" : "content"}`}>
+                            <button className={`btn-opcion btn-isHover ${!resultado ? "hidden" : "btn-opcion"}`} onClick={() => volverAJugar()} >Volver a jugar</button>
+                        </div>
+
+                        <div className={`box-vs animated ${resultado ? "fadeOutDown" : "" }`}>
                             <h1 className="title-juego">VS</h1>
                         </div>
 
-                        <div className="animated bounceInRight box-opcion-elegida-pc" disabled={true}>
+                        <div className={`animated bounceInRight ${resultado ? "fadeOutDown" : "" }`}>
                             {eleccionPC && (
                                 <button key={eleccionPC.id} className="btn-opcion"> 
                                     <img className="img-opcion" src={eleccionPC.logo} alt={eleccionPC.nombre}></img>
