@@ -5,6 +5,7 @@ import lagarto from "../images/lagarto.png";
 import piedra from "../images/piedra.png";
 import Spock from "../images/Spock.png";
 import tijeras from "../images/tijeras.png";
+import { useSpring, animated } from "react-spring";
 
 const Juego = () => {
 
@@ -57,6 +58,10 @@ const Juego = () => {
     const [disabled, setDisabled] = useState(false);
     const [disabledOpcionesElegidas,setDisabledOpcionesElegidas] = useState(true);
     const [chosen, setChosen] = useState(false);
+    const [animate, setAnimate] = useSpring(() => ({
+        transform: "scale(1)",
+        config: { duration: 500 }
+      }));      
 
 
     const handleEleccion = (id) => {
@@ -83,12 +88,18 @@ const Juego = () => {
         if (opcionElegidaUsuario.nombre === eleccionElegidaPc.nombre) {
             setResultado("EMPATE");
         } else {
-            setResultado(opcionElegidaUsuario.jugarCon(eleccionElegidaPc));
+            const jugada = opcionElegidaUsuario.jugarCon(eleccionElegidaPc);
+            setResultado(jugada);
+
+            if (jugada === "¡VICTORIA!") setAnimate({ transform: "scale(1.2)" });
         }
     }
 
     useEffect(() => {
         console.log(resultado);
+        // if (resultado === "¡VICTORIA!") {
+        //     setAnimate({ transform: "scale(1.2)" }).start();
+        // }
 
     }, [resultado])
 
@@ -101,6 +112,7 @@ const Juego = () => {
     }
 
     const volverAJugar = () => {
+        setAnimate({ transform: "scale(1)" });
         setTimeout(() => {
             setChosen(false);
             setEleccionPC(null);
@@ -146,7 +158,9 @@ const Juego = () => {
                         </div>
 
                         <div className={`${!resultado ? "hidden" : ""}`}> 
-                            <h1 className="title-resultado">{resultado}</h1>
+                            <animated.h1 className="title-resultado" style={animate}>
+                            {resultado}
+                            </animated.h1>
                         </div>
 
                         <div className={`${!resultado ? "hidden" : "content"}`}>
