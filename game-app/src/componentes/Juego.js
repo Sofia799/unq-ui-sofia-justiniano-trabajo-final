@@ -1,56 +1,9 @@
 import React, { useEffect, useState } from "react";
 import "./Juego.css";
-import papel from "../images/papel.png";
-import lagarto from "../images/lagarto.png";
-import piedra from "../images/piedra.png";
-import Spock from "../images/Spock.png";
-import tijeras from "../images/tijeras.png";
 import { useSpring, animated } from "react-spring";
+import opciones from "../opciones";
 
 const Juego = () => {
-
-    const opciones = [
-        {   
-            id: 0, 
-            nombre: 'Piedra' , 
-            logo: piedra, 
-            jugarCon: ((rival) => {
-                return rival.nombre === 'Tijera' || rival.nombre === 'Lagarto' ? "¡VICTORIA!" : "DERROTA";
-            })
-        },
-        {
-            id: 1, 
-            nombre: 'Papel' , 
-            logo: papel,
-            jugarCon: ((rival) => {
-                return rival.nombre === 'Piedra' || rival.nombre === 'Spock' ? "¡VICTORIA!" : "DERROTA";
-            })
-        },
-        {
-            id: 2, 
-            nombre: 'Tijera' , 
-            logo: tijeras,
-            jugarCon: ((rival) => {
-                return rival.nombre === 'Papel' || rival.nombre === 'Lagarto' ? "¡VICTORIA!" : "DERROTA";
-            })
-        },
-        {
-            id: 3, 
-            nombre: 'Lagarto', 
-            logo: lagarto,
-            jugarCon: ((rival) => {
-                return rival.nombre === 'Spock' || rival.nombre === 'Papel' ? "¡VICTORIA!" : "DERROTA";
-            })
-        },
-        {
-            id: 4, 
-            nombre: 'Spock', 
-            logo: Spock,
-            jugarCon: ((rival) => {
-                return rival.nombre === 'Tijera' || rival.nombre === 'Piedra' ? "¡VICTORIA!" : "DERROTA";
-            })
-        },
-    ];
 
     const [eleccionUser, setEleccionUser] = useState(null);
     const [eleccionPC, setEleccionPC] = useState(null);
@@ -61,8 +14,13 @@ const Juego = () => {
     const [animate, setAnimate] = useSpring(() => ({
         transform: "scale(1)",
         config: { duration: 500 }
-      }));      
+      }));
 
+    useEffect(() => {
+        if (resultado === "¡VICTORIA!")
+            setAnimate({ transform: "scale(1.2)" });
+
+    }, [resultado, setAnimate])
 
     const handleEleccion = (id) => {
         let opcionElegidaUsuario = opciones ? opciones.find((opcion) => opcion.id === id) : <>No existe la opcion elegida</>;
@@ -94,12 +52,6 @@ const Juego = () => {
             if (jugada === "¡VICTORIA!") setAnimate({ transform: "scale(1.2)" });
         }
     }
-
-    useEffect(() => {
-        if (resultado === "¡VICTORIA!")
-            setAnimate({ transform: "scale(1.2)" });
-
-    }, [resultado, setAnimate])
 
     const eleccionRandom = () => {
         const random = Math.floor(Math.random() * 5);
