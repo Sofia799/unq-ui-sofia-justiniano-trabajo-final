@@ -2,7 +2,7 @@
 
 * **Descripción**
 
-    Este proyecto es una implementación del popular juego "Piedra Papel Tijera Lagarto Spock". El juego es una extensión del clásico "Piedra Papel Tijera" e incluye dos opciones adicionales: "Lagarto" y "Spock". El objetivo del juego es elegir una de las opciones y competir contra la elección del oponente, siguiendo las reglas establecidas.
+    Este trabajo final integrador es una implementación del popular juego "Piedra Papel Tijera Lagarto Spock". El juego es una extensión del clásico "Piedra Papel Tijera" e incluye dos opciones adicionales: "Lagarto" y "Spock". El objetivo del juego es elegir una de las opciones y competir contra la elección del oponente, siguiendo las reglas establecidas.
 
 * **Requisitos previos:**
 
