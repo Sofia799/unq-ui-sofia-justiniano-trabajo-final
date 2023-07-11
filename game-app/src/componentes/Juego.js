@@ -1,7 +1,10 @@
-import React, { useEffect, useState } from "react";
+import React, { useState } from "react";
 import "./Juego.css";
-import { useSpring, animated } from "react-spring";
 import opciones from "../opciones";
+import OpcionesJuego from "./OpcionesJuego";
+import OpcionElegida from "./OpcionElegida";
+import ResultadoJuego from "./ResultadoJuego";
+import VolverAJugar from "./VolverAJugar";
 
 const Juego = () => {
 
@@ -11,34 +14,37 @@ const Juego = () => {
     const [disabled, setDisabled] = useState(false);
     const [disabledOpcionesElegidas,setDisabledOpcionesElegidas] = useState(true);
     const [chosen, setChosen] = useState(false);
-    const [animate, setAnimate] = useSpring(() => ({
-        transform: "scale(1)",
-        config: { duration: 500 }
-      }));
-
-    useEffect(() => {
-        if (resultado === "¡VICTORIA!")
-            setAnimate({ transform: "scale(1.2)" });
-
-    }, [resultado, setAnimate])
 
     const handleEleccion = (id) => {
-        let opcionElegidaUsuario = opciones ? opciones.find((opcion) => opcion.id === id) : <>No existe la opcion elegida</>;
-        setEleccionUser(opcionElegidaUsuario);
+        let opcionElegidaUsuario = handleEleccionUser(id);
+        let opcionElegidaPC = handleEleccionPC();
+        jugar(opcionElegidaUsuario, opcionElegidaPC);   
+    }
+
+    const handleEleccionUser = (id) => {
+        let eleccionUser = opciones ? opciones.find((opcion) => opcion.id === id) : <>No existe la opcion elegida</>;
+        setEleccionUser(eleccionUser);
         setDisabled(true);
 
-        setTimeout(() => {
-            setChosen(true);
-        }, 500)
-      
-        setDisabledOpcionesElegidas(false);
-        
-        const eleccionElegidaPc = eleccionRandom();
+        return eleccionUser;
+    }
+    
+    const handleEleccionPC = () => {
+        setTimeout(() => { 
+            setChosen(true); 
+        }, 500);
 
+        setDisabledOpcionesElegidas(false);      
+        const eleccionPc = eleccionRandom();
+        clearTimeout();
+
+        return eleccionPc;
+    }
+
+    const jugar = (opcionElegidaUsuario, opcionElegidaPC) => {
         setTimeout(() => {
-            resolverJugada(opcionElegidaUsuario, eleccionElegidaPc);
+            resolverJugada(opcionElegidaUsuario, opcionElegidaPC);
         }, 5000);
-
         clearTimeout();
     }
 
@@ -48,8 +54,6 @@ const Juego = () => {
         } else {
             const jugada = opcionElegidaUsuario.jugarCon(eleccionElegidaPc);
             setResultado(jugada);
-
-            if (jugada === "¡VICTORIA!") setAnimate({ transform: "scale(1.2)" });
         }
     }
 
@@ -62,7 +66,6 @@ const Juego = () => {
     }
 
     const volverAJugar = () => {
-        setAnimate({ transform: "scale(1)" });
         setTimeout(() => {
             setChosen(false);
             setEleccionPC(null);
@@ -78,66 +81,26 @@ const Juego = () => {
         <div className="container">
             {!chosen ? 
                 (<div>
-                        <div className={`container-title ${disabled ? "disabled" : ""}`} disabled={disabled}>
-                            <h1 className="title-juego">¡Que comience el juego!</h1>
-                        </div>
+                    <div className={`container-title ${disabled ? "disabled" : ""}`} disabled={disabled}>
+                        <h1 className="title-juego">¡Que comience el juego!</h1>
+                    </div>
 
-                        <div className="container-opciones">
-                            <div className="box-btn-opciones">
-                                {opciones && opciones.map((opcion) => {
-                                    return (
-                                        <button key={opcion.id} className={`btn-opcion btn-isHover ${disabled ? "disabled" : ""}`} onClick={() => handleEleccion(opcion.id)} disabled={disabled}> 
-                                            <img className="img-opcion" src={opcion.logo} alt={opcion.nombre}></img>
-                                            {opcion.nombre}
-                                        </button>
-                                    )
-                                })}
-                            </div>
-                        </div>
+                    <OpcionesJuego disabled={disabled} handleEleccion={handleEleccion} />
                 </div>)
             :
                 (<div className={`animated ${disabledOpcionesElegidas ? "disabled" : ""}`} disabled={disabledOpcionesElegidas}>
+                    <OpcionElegida eleccion={eleccionUser} resultado={resultado} disabled={disabled} />
+                    <ResultadoJuego resultado={resultado} />
+                    <VolverAJugar resultado={resultado} volverAJugar={volverAJugar} />
 
-                    <div className={`bounceInLeft animated ${resultado ? "fadeOutDown" : "" }`}>
-                        {eleccionUser && (
-                            <div className="box-opcion-elegida">
-                                <h2 className="title-eleccion">Elegiste:</h2>
-                                <button key={eleccionUser.id} className={`btn-opcion ${resultado ? "box-resultado hidden" : ""}`}> 
-                                    <img className="img-opcion" src={eleccionUser.logo} alt={eleccionUser.nombre}></img>
-                                    {eleccionUser.nombre}
-                                </button>
-                            </div>
-                        )}
-                    </div>
-
-                    <div className={`${!resultado ? "hidden" : ""}`}> 
-                        <animated.h1 className="title-resultado" style={animate}>
-                        {resultado}
-                        </animated.h1>
-                    </div>
-
-                    <div className={`${!resultado ? "hidden" : "content"}`}>
-                        <button className={`btn-opcion btn-isHover ${!resultado ? "hidden" : "btn-opcion"}`} onClick={() => volverAJugar()} >Volver a jugar</button>
-                    </div>
-
-                    <div className={`box-vs animated ${resultado ? "fadeOutDown" : "" }`}>
+                    <div className={`box-vs animated ${resultado ? "fadeOutDown" : ""}`}>
                         <h1 className="title-juego">VS</h1>
                     </div>
 
-                    <div className={`animated bounceInRight ${resultado ? "fadeOutDown" : "" }`}>
-                        {eleccionPC && (
-                            <div className="box-opcion-elegida">
-                                <button key={eleccionPC.id} className={`btn-opcion ${resultado ? "box-resultado hidden" : ""}`}> 
-                                    <img className="img-opcion" src={eleccionPC.logo} alt={eleccionPC.nombre}></img>
-                                    {eleccionPC.nombre}
-                                </button>
-                                <h2 className="title-eleccion">Tu oponente eligió:</h2>
-                            </div>
-                        )}
-                    </div>
+                    <OpcionElegida eleccion={eleccionPC} resultado={resultado} disabled={disabled} isOpponent />
                 </div>)}
         </div>
-    )
+    );
 }
 
 export default Juego;

@@ -1,0 +1,11 @@
+.hidden {
+  display: none;
+  margin: 0;
+}
+
+.title-resultado {
+  align-self: center;
+  color: #ebebeb;
+  font-size: 50px;
+  font-weight: bold;
+}

@@ -1,0 +1,27 @@
+.hidden {
+    display: none;
+    margin: 0;
+}
+
+.content {
+    display: contents;
+    cursor: pointer;
+}
+
+.btn-opcion {
+    background-color: #ffffff;
+    color: #1d1c1c;
+    border: 2px solid #333333;
+    padding: 10px 20px;
+    font-size: 16px;
+    font-weight: bold;
+    margin: 10px;
+    cursor: pointer;
+    width: 150px;
+    border-radius: 10px;
+}
+
+.btn-isHover:hover {
+    background-color: #333333;
+    color: #ffffff;
+}
