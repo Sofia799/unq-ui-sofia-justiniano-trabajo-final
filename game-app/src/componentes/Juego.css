@@ -1,15 +1,39 @@
-.container {
-  width: 100%;
-  height: auto;
-  display: flex;
-  flex-direction: column;
-  justify-content: center;
-  align-items: center;
-  height: 100vh;
-  background-color: rgb(2, 0, 36);
-  box-sizing: border-box;
-  overflow: hidden;
+@media (max-width: 840px) {
+  .title-juego {
+    font-size: 25px;
+  }
+
+  .container {
+    width: 100%;
+    height: 100vh;
+    display: flex;
+    flex-direction: column;
+    justify-content: center;
+    align-items: center;
+    background-color: rgb(2, 0, 36);
+    /* box-sizing: border-box;
+    overflow: hidden; */
+  }
 }
+
+@media (min-width:841px) {
+  .title-juego {
+    font-size: 50px;
+  }
+
+  .container {
+    width: 100%;
+    display: flex;
+    flex-direction: column;
+    justify-content: center;
+    align-items: center;
+    height: 100vh;
+    background-color: rgb(2, 0, 36);
+    box-sizing: border-box;
+    overflow: hidden;
+  }
+}
+
 
 .container-title {
   display: flex;
@@ -20,7 +44,6 @@
 .title-juego {
   align-self: center;
   color: #ebebeb;
-  font-size: 50px;
   font-weight: bold;
 }
 

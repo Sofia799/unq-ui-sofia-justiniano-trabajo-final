@@ -1,3 +1,15 @@
+@media (max-width: 840px) {
+  .title-resultado {
+    font-size: 30px;
+  }
+}
+
+@media (min-width: 841px) {
+  .title-resultado {
+    font-size: 50px;
+  }
+}
+
 .hidden {
   display: none;
   margin: 0;
@@ -6,6 +18,5 @@
 .title-resultado {
   align-self: center;
   color: #ebebeb;
-  font-size: 50px;
   font-weight: bold;
 }

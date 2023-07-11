@@ -1,3 +1,38 @@
+@media (max-width:840px) {
+    .btn-opcion {
+        background-color: #ffffff;
+        color: #1d1c1c;
+        border: 2px solid #333333;
+        padding: 10px 20px;
+        font-size: 16px;
+        font-weight: bold;
+        margin: 10px;
+        cursor: pointer;
+        border-radius: 10px;
+    }
+
+    .btn-volverAJugar {
+        width: 130px;
+        font-size: 14px;
+        padding: 10px;
+    }
+}
+
+@media (min-width: 841px) {
+    .btn-opcion {
+        background-color: #ffffff;
+        color: #1d1c1c;
+        border: 2px solid #333333;
+        padding: 10px 20px;
+        font-size: 16px;
+        font-weight: bold;
+        margin: 10px;
+        cursor: pointer;
+        width: 150px;
+        border-radius: 10px;
+    }
+}
+
 .hidden {
     display: none;
     margin: 0;
@@ -6,19 +41,6 @@
 .content {
     display: contents;
     cursor: pointer;
-}
-
-.btn-opcion {
-    background-color: #ffffff;
-    color: #1d1c1c;
-    border: 2px solid #333333;
-    padding: 10px 20px;
-    font-size: 16px;
-    font-weight: bold;
-    margin: 10px;
-    cursor: pointer;
-    width: 150px;
-    border-radius: 10px;
 }
 
 .btn-isHover:hover {

@@ -1,3 +1,51 @@
+@media (max-width: 840px) {
+  .btn-opcion {
+    background-color: #ffffff;
+    color: #1d1c1c;
+    border: 2px solid #333333;
+    padding: 10px 20px;
+    font-size: 14px;
+    font-weight: bold;
+    margin: 10px;
+    cursor: pointer;
+    width: 120px;
+    border-radius: 10px;
+  }
+
+  .img-opcion {
+    width: 75px;
+    height: auto;
+  }
+
+  .title-eleccion {
+    font-size: 17px;
+  }
+}
+
+@media (min-width: 841px) {
+  .btn-opcion {
+    background-color: #ffffff;
+    color: #1d1c1c;
+    border: 2px solid #333333;
+    padding: 10px 20px;
+    font-size: 16px;
+    font-weight: bold;
+    margin: 10px;
+    cursor: pointer;
+    width: 150px;
+    border-radius: 10px;
+  }
+
+  .img-opcion {
+    width: 100px;
+    height: auto;
+  }
+
+  .title-eleccion {
+    font-size: 25px;
+  }
+}
+
 .animated {
   display: flex;
   flex-direction: column;
@@ -130,18 +178,6 @@
   margin: 0;
 }
 
-.btn-opcion {
-  background-color: #ffffff;
-  color: #1d1c1c;
-  border: 2px solid #333333;
-  padding: 10px 20px;
-  font-size: 16px;
-  font-weight: bold;
-  margin: 10px;
-  cursor: pointer;
-  width: 150px;
-  border-radius: 10px;
-}
 
 .box-resultado {
   cursor: default;
@@ -150,11 +186,6 @@
 .hidden {
   display: none;
   margin: 0;
-}
-
-.img-opcion {
-  width: 100px;
-  height: auto;
 }
 
 @-webkit-keyframes bounceInRight {
