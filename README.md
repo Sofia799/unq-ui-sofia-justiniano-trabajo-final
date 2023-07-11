@@ -20,9 +20,9 @@
 
             git clone https://github.com/Sofia799/unq-ui-sofia-justiniano-trabajo-final.git
 
-    *   Navegá al directorio raíz del proyecto:
+    *   Navegá al directorio `game-app` del proyecto:
 
-            cd <nombre_de_directorio>
+            cd <nombre_de_directorio/game-app>
 
     * Instalá las dependencias del proyecto ejecutando el siguiente comando:
 
@@ -32,7 +32,9 @@
 
     Una vez que hayas completado la instalación, podes ejecutar el proyecto localmente siguiendo estos pasos:
 
-    *   Abrí una terminal y navegá al directorio raíz del proyecto.
+    *   Navegá al directorio `game-app` del proyecto.
+
+            cd <nombre_de_directorio/game-app>
 
     *   Ejecutá el siguiente comando para iniciar el servidor de desarrollo:
     
