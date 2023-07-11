@@ -14,6 +14,8 @@ const Juego = () => {
     const [disabled, setDisabled] = useState(false);
     const [disabledOpcionesElegidas,setDisabledOpcionesElegidas] = useState(true);
     const [chosen, setChosen] = useState(false);
+    const [partidasGanadasUsuario, setPartidasGanadasUsuario] = useState(0);
+    const [partidasGanadasPC, setPartidasGanadasPC] = useState(0);
 
     const handleEleccion = (id) => {
         let opcionElegidaUsuario = handleEleccionUser(id);
@@ -54,7 +56,14 @@ const Juego = () => {
         } else {
             const jugada = opcionElegidaUsuario.jugarCon(eleccionElegidaPc);
             setResultado(jugada);
+            calcularPuntaje(jugada);
         }
+    }
+
+    const calcularPuntaje = (jugada) => {
+        jugada === "¡VICTORIA!" ? 
+            setPartidasGanadasUsuario(partidasGanadasUsuario + 1) : 
+            setPartidasGanadasPC(partidasGanadasPC + 1);
     }
 
     const eleccionRandom = () => {
@@ -79,6 +88,17 @@ const Juego = () => {
 
     return (
         <div className="container">
+            <div className="box-cantidadPartidasGanadas">
+                <div className="img-cantidad-partidas">
+                    <img src="https://img.icons8.com/nolan/50/user-female.png" alt="user-female"/>
+                    <p className="cantidad-partidas">{partidasGanadasUsuario}</p>
+                </div>
+
+                <div className="img-cantidad-partidas">
+                    <img src="https://img.icons8.com/office/50/000000/bot.png" alt="bot"/>
+                    <p className="cantidad-partidas">{partidasGanadasPC}</p>
+                </div>
+            </div>
             {!chosen ? 
                 (<div>
                     <div className={`container-title ${disabled ? "disabled" : ""}`} disabled={disabled}>
