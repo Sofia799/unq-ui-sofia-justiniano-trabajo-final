@@ -1,3 +1,1 @@
-- Indicaciones a descargar e instalar el proyecto:
-
-- Indicaciones a ejecutar localmente el proyecto:
+# unq-ui-sofia-justiniano-trabajo-final
