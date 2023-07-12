@@ -22,7 +22,7 @@
 
     *   Navegá al directorio `game-app` del proyecto:
 
-            cd <nombre_de_directorio/game-app>
+            cd <nombre_de_directorio>/game-app
 
     * Instalá las dependencias del proyecto ejecutando el siguiente comando:
 
@@ -34,7 +34,7 @@
 
     *   Navegá al directorio `game-app` del proyecto.
 
-            cd <nombre_de_directorio/game-app>
+            cd <nombre_de_directorio>/game-app
 
     *   Ejecutá el siguiente comando para iniciar el servidor de desarrollo:
     
