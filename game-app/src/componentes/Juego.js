@@ -90,7 +90,8 @@ const Juego = () => {
         <div className="container">
             <div className="box-cantidadPartidasGanadas">
                 <div className="img-cantidad-partidas">
-                    <img src="https://img.icons8.com/nolan/50/user-female.png" alt="user-female"/>
+                    {/* <img src="https://img.icons8.com/nolan/50/user-female.png" alt="user-female"></img> */}
+                    <img src="https://img.icons8.com/ios/40/e4b5f0/gender-neutral-user--v1.png" alt="gender-neutral-user--v1"/>
                     <p className="cantidad-partidas">{partidasGanadasUsuario}</p>
                 </div>
 
