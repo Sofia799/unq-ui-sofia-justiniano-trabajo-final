@@ -41,6 +41,9 @@
 .content {
     display: contents;
     cursor: pointer;
+    width: 100%;
+    display: flex;
+    justify-content: center;
 }
 
 .btn-isHover:hover {

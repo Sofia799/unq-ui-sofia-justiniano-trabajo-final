@@ -1,12 +1,14 @@
 @media (max-width: 840px) {
   .title-resultado {
     font-size: 30px;
+    text-align: center;
   }
 }
 
 @media (min-width: 841px) {
   .title-resultado {
     font-size: 50px;
+    text-align: center;
   }
 }
 
