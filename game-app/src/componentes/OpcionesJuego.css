@@ -10,9 +10,6 @@
     display: flex;
     flex-wrap: wrap;
     justify-content: center;
-    /* width: 70%;
-    max-width: 800px;
-    margin: 0 auto;  */
   }
 
   .img-opcion {

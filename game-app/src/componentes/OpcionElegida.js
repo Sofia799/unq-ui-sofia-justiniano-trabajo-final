@@ -4,7 +4,7 @@ import "./OpcionElegida.css";
 const OpcionElegida = ({ eleccion, resultado, isOpponent }) => {
 
     return (
-        <div className={`${isOpponent ? "bounceInLeft" : "bounceInRight"} animated ${resultado ? "fadeOutDown" : ""}`}>
+        <div className={`${isOpponent ? "bounceInRight" : "bounceInLeft"} animated ${resultado ? "fadeOutDown" : ""}`}>
             {eleccion && (
                 <div className={`box-opcion-elegida animated ${resultado ? "fadeOutDown" : ""}`}>
                     <h2 className="title-eleccion">{isOpponent ? "Tu oponente eligió:" : "Elegiste:"}</h2>
