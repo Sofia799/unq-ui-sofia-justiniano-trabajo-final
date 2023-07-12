@@ -95,7 +95,7 @@ const Juego = () => {
                 </div>
 
                 <div className="img-cantidad-partidas">
-                    <img src="https://img.icons8.com/office/50/000000/bot.png" alt="bot"/>
+                    <img src="https://img.icons8.com/officel/50/monitor.png" alt="monitor"/>
                     <p className="cantidad-partidas">{partidasGanadasPC}</p>
                 </div>
             </div>
