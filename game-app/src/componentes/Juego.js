@@ -16,6 +16,8 @@ const Juego = () => {
     const [chosen, setChosen] = useState(false);
     const [partidasGanadasUsuario, setPartidasGanadasUsuario] = useState(0);
     const [partidasGanadasPC, setPartidasGanadasPC] = useState(0);
+    const [mostrarTextoUsuario, setMostrarTextoUsuario] = useState(false);
+    const [mostrarTextoOponente, setMostrarTextoOponente] = useState(false);
 
     const handleEleccion = (id) => {
         let opcionElegidaUsuario = handleEleccionUser(id);
@@ -89,16 +91,19 @@ const Juego = () => {
     return (
         <div className="container">
             <div className="box-cantidadPartidasGanadas">
-                <div className="img-cantidad-partidas">
-                    <img src="https://img.icons8.com/ios/40/e4b5f0/gender-neutral-user--v1.png" alt="gender-neutral-user--v1"/>
+                <div className="img-cantidad-partidas" onMouseEnter={() => setMostrarTextoUsuario(true)} onMouseLeave={() => setMostrarTextoUsuario(false)}>
+                    <img src="https://img.icons8.com/ios/40/e4b5f0/gender-neutral-user--v1.png" alt="gender-neutral-user--v1" />
                     <p className="cantidad-partidas">{partidasGanadasUsuario}</p>
+                    {mostrarTextoUsuario && <span className="texto-mouse">Tú</span>}
                 </div>
 
-                <div className="img-cantidad-partidas">
-                    <img src="https://img.icons8.com/officel/50/monitor.png" alt="monitor"/>
+                <div className="img-cantidad-partidas" onMouseEnter={() => setMostrarTextoOponente(true)} onMouseLeave={() => setMostrarTextoOponente(false)}>
+                    <img src="https://img.icons8.com/officel/50/monitor.png" alt="monitor" />
                     <p className="cantidad-partidas">{partidasGanadasPC}</p>
+                    {mostrarTextoOponente && <span className="texto-mouse">Tu oponente</span>}
                 </div>
             </div>
+            
             {!chosen ? 
                 (<div>
                     <div className={`container-title ${disabled ? "disabled" : ""}`} disabled={disabled}>

@@ -36,9 +36,23 @@
     font-size: 15px;
     font-weight: bold;
   }
+
+  .texto-mouse {
+    color: #e4b5f0;
+    position: relative;
+    top: -45px;
+    left: -70px;
+  }
 }
 
 @media (min-width:841px) {
+  .texto-mouse {
+    color: #e4b5f0;
+    position: relative;
+    top: -40px;
+    left: -50px;
+  }
+
   .box-cantidadPartidasGanadas {
     display: flex;
     justify-content: start;
